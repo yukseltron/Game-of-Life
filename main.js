@@ -1,5 +1,5 @@
-var gridH = 400;
-var gridW = 400;
+var gridH = 500;
+var gridW = 500;
 var grid = buildArr(gridW);
 var grid2 = buildArr(gridH);
 
@@ -9,7 +9,6 @@ start();
 function start() {
 	draw();
 	update();
-	requestAnimationFrame(start);
 }
 
 function buildArr(dimension) {
