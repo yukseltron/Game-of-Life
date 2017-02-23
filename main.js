@@ -70,7 +70,6 @@ function updateGrid() { //perform one iteration of grid update
 	displayGrid();
 }
 
-
 function determineFate(cells, i, j) {
 	if (grid[i][j] == 0) {
 		if (cells == 3) {
@@ -92,7 +91,6 @@ function determineFate(cells, i, j) {
 		}
 	}
 }
-
 
 function displayGrid() {
 	for (var i = 0; i < height; i++) { //iterate through rows
