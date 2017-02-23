@@ -25,7 +25,7 @@ function makeGrid(rows) {
 function fillGrid() {
     for (var i = 0; i < height; i++) {
         for (var j = 0; j < width; j++) {
-            rand = Math.floor(Math.random() * (7 - 1 + 1)) + 1;
+            var rand = Math.floor(Math.random() * (7 - 1 + 1)) + 1;
 
             if (rand === 1) {
                 grid[i][j] = 1;
@@ -64,7 +64,7 @@ function updateGrid() { //perform one iteration of grid update
 			cells += grid[i-1][j];
 			cells += grid[i-1][j+1];
 
-			determineFate(cells, i, j);
+			 determineFate(cells, i, j);
         }
     }
 	displayGrid();
