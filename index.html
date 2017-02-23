@@ -1,10 +1,16 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Game of Life</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<canvas id="canvas" width="500" height="500"><script src="main.js"></script></canvas>
+	<div class="title">
+		<h4 id="sub-title">Conway's</h4>
+		<h1 id="main-title">The Game of Life</h1>
+	<form>
+		<p id="play" onclick="fillGrid()">Play</p>
+	</form>
+	</div>
+	<canvas id="canvas" width="600" height="600"><script src="main.js"></script></canvas>
 </body>
 </html>

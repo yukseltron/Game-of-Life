@@ -1,96 +1,104 @@
-var gridH = 500;
-var gridW = 500;
-var grid = buildArr(gridW);
-var grid2 = buildArr(gridH);
+var height = 600;
+var width = 600;
+var grid = makeGrid(width);
+var tempGrid = makeGrid(width);
 
-fillGridRand();
 start();
 
+//functions
 function start() {
-	draw();
-	update();
+    drawGrid();
+    updateGrid();
+    requestAnimationFrame(start);
 }
 
-function buildArr(dimension) {
-	var a = [];
-	for (var i = 0; i < dimension; i++) {
-		a[i] = [];
-	}
+function makeGrid(rows) {
+    var a = [];
 
-	return a;
+    for (var i = 0; i < rows; i++) {
+        a[i] = [];
+    }
+
+    return a;
 }
 
-function fillGridRand() {
-	for (var i = 0; i < gridH; i++) {
-		for (var j = 0; j < gridW; j++) {
-			var rand = Math.random();
-			if (Math.floor(rand * 2) == 1) {
-				grid[i][j] = 1;
-			}
-			else {
-				grid[i][j] = 1;
-			}
-		}
-	}
+function fillGrid() {
+    for (var i = 0; i < height; i++) {
+        for (var j = 0; j < width; j++) {
+            rand = Math.floor(Math.random() * (7 - 1 + 1)) + 1;
+
+            if (rand === 1) {
+                grid[i][j] = 1;
+            } else {
+                grid[i][j] = 0;
+            }
+        }
+    }
 }
 
-function draw() {
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	context.clearRect(0,0,500,500);
+function drawGrid() {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.clearRect(0, 0, 600, 600);
 
-	for (var i = 1; i < gridH; i++) {
-		for (var j = 1; j < gridW; j++) {
-			if (grid[i][j] == 1) {
-				context.filLStyle = "#48BF84"
-				context.fillRect(i, j, 1, 1);
-			}
-		}
-	}
+    for (var i = 1; i < height; i++) {
+        for (var j = 1; j < width; j++) {
+            if (grid[i][j] === 1) {
+                ctx.fillStyle = "#59CD90";
+                ctx.fillRect(i, j, 1, 1);
+            }
+        }
+    }
 }
 
-function update() {
-	for (var i = 1; i < gridH-1; i++) {
-		for (var j = 1; j < gridW-1; j++) {
+function updateGrid() { //perform one iteration of grid update
+	for (var i = 1; i < height-1; i++) {
+		for (var j = 1; j < width-1; j++) {
 			var cells = 0;
 
 			cells += grid[i+1][j-1];
 			cells += grid[i+1][j];
 			cells += grid[i+1][j+1]
 			cells += grid[i][j-1];
-			cells += grid[i][j];
 			cells += grid[i][j+1];
 			cells += grid[i-1][j-1];
 			cells += grid[i-1][j];
 			cells += grid[i-1][j+1];
 
-			life(cells, i, j);
-		}
-	}
-
-	updateGrid();
+			determineFate(cells, i, j);
+        }
+    }
+	displayGrid();
 }
 
-function life(cells, i, j) {
+
+function determineFate(cells, i, j) {
 	if (grid[i][j] == 0) {
 		if (cells == 3) {
-			grid2[i][j] = 1;
+			tempGrid[i][j] = 1;
+		}
+		else {
+			tempGrid[i][j] = 0;
 		}
 	}
-	else {
-		if (cells == 1) {
-			grid2[i][j] = 0;
+	else if (grid[i][j] == 1){
+		if (cells <= 1) {
+			tempGrid[i][j] = 0;
 		}
-		else if (cells = 8) {
-			grid2[i][j] = 0;
+		else if (cells <= 3) {
+			tempGrid[i][j] = 1;
+		}
+		else {
+			tempGrid[i][j] = 0;
 		}
 	}
 }
 
-function updateGrid() {
-	for (var i = 0; i < gridH; i++) {
-		for (var j = 0; j < gridW; j++) {
-			grid[i][j] = grid2[i][j];
+
+function displayGrid() {
+	for (var i = 0; i < height; i++) { //iterate through rows
+		for (var j = 0; j < width; j++) { //iterate through columns
+			grid[i][j] = tempGrid[i][j];
+
 		}
 	}
 }

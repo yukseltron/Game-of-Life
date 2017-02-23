@@ -1,4 +1,41 @@
-canvas {
-	border: 1px;
-	border-color: red;
+@import url('https://fonts.googleapis.com/css?family=Bahiana|Reenie+Beanie');
+
+
+.title {
+	position: absolute;
+	font-size: 350%;
+	text-align: left;
+	margin-left: 10%;
+	color: #00120B;
+}
+
+#canvas {
+	margin-left: 50%;
+}
+
+
+#sub-title {
+	font-family: 'Reenie Beanie', sans-serif;
+	margin-bottom: 0%;
+}
+
+#main-title {
+	font-family: 'Bahiana', sans-serif;
+	margin-top: 0%;
+	margin-bottom: 0%;
+}
+
+#play {
+	font-family: 'Bahiana', sans-serif;
+	margin-top: 0%;
+	margin-left: 1%;
+	padding:0;
+}
+
+#play:hover {
+	color: #59CD90;
+}
+
+#play:active {
+	color: #95DFB8;
 }
