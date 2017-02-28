@@ -3,8 +3,6 @@ var width = 600;
 var grid = makeGrid(width);
 var tempGrid = makeGrid(width);
 
-start();
-
 //functions
 function start() {
     drawGrid();
