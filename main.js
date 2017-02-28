@@ -98,3 +98,7 @@ function displayGrid() {
 		}
 	}
 }
+
+function stopDrag() {
+    document.getElementById('leaf').draggable = false;
+}
